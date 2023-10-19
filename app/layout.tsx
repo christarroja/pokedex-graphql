@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={karla.className}>
       <ApolloWrapper>
-        <body className="bg-gradient-to-b from-third to-primary h-screen">
+        <body>
           <StickyHeader />
             {children}
         </body>

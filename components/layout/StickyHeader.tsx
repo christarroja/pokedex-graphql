@@ -1,10 +1,13 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
+import MobileDrawer from './MobileDrawer'
 
 const StickyHeader = () => {
-  const pathname = usePathname()
+  const currentRoute = usePathname()
 
   return (
     <section className="sticky top-0 left-0 w-full h-20 bg-third shadow-lg flex items-center">
@@ -18,19 +21,31 @@ const StickyHeader = () => {
             priority
           />
         </div>
-        <nav className="flex gap-8 text-2xl">
+        <nav className="lg:flex hidden gap-8 text-2xl">
           <button className="px-3 py-2 group">
-            <Link href="/" title="Home" className="group-hover:underline group-hover:underline-offset-8">
+            <Link 
+              href="/" 
+              title="Home" 
+              className={currentRoute === "/"
+              ? "underline underline-offset-8"
+              : "group-hover:underline group-hover:underline-offset-8"}
+            >
               Home
             </Link>
           </button>
           <button className="px-3 py-2 group">
-            <Link href="/pokedex" title="Home" className="group-hover:underline group-hover:underline-offset-8">
+            <Link 
+              href="/pokedex" 
+              title="PokéDex" 
+              className={currentRoute === "/pokedex"
+              ? "underline underline-offset-8"
+              : "group-hover:underline group-hover:underline-offset-8"}
+            >
               PokéDex
             </Link>
           </button>
-          
         </nav>
+        <MobileDrawer />
       </div>
       
     </section>
