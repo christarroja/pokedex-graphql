@@ -11,6 +11,8 @@
   "dependencies": {
     "@apollo/client": "^3.8.0-rc.2",
     "@apollo/experimental-nextjs-app-support": "^0.4.3",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "graphql": "^16.8.1",
     "next": "13.5.6",
     "react": "^18",
