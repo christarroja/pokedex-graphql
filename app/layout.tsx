@@ -1,6 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ApolloWrapper } from "@/lib/apolloProvider";
+import StickyHeader from '@/components/layout/StickyHeader';
+import { Karla } from 'next/font/google'
+
+const karla = Karla({ 
+  subsets: ['latin'],
+  display: 'swap', 
+})
 
 export const metadata: Metadata = {
   title: "PokeDex",
@@ -13,9 +20,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={karla.className}>
       <ApolloWrapper>
-        <body>{children}</body>
+        <body className="bg-gradient-to-b from-third to-primary h-screen">
+          <StickyHeader />
+            {children}
+        </body>
       </ApolloWrapper>
     </html>
   )
