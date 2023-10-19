@@ -1,10 +1,10 @@
+import Hero from "@/components/pages/Hero";
 
 
 export default function Home() {
   return (
-    <main className="bg-gradient-to-b from-third to-primary h-screen">
-      <h1>Pokemon List</h1>
-      {/* <PokemonList /> */}
+    <main className="flex flex-wrap items-center px-6 mx-auto bg-gradient-to-b from-third to-primary h-[900px]">
+      <Hero />
     </main>
   )
 }

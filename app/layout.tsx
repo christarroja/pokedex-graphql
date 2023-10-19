@@ -3,6 +3,7 @@ import './globals.css'
 import { ApolloWrapper } from "@/lib/apolloProvider";
 import StickyHeader from '@/components/layout/StickyHeader';
 import { Karla } from 'next/font/google'
+import Footer from '@/components/layout/Footer';
 
 const karla = Karla({ 
   subsets: ['latin'],
@@ -24,7 +25,8 @@ export default function RootLayout({
       <ApolloWrapper>
         <body>
           <StickyHeader />
-            {children}
+          {children}
+          <Footer />
         </body>
       </ApolloWrapper>
     </html>

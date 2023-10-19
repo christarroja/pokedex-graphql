@@ -28,7 +28,7 @@ export default function MobileDrawer() {
         <div className="fixed inset-0 bg-black bg-opacity-40" />
 
         <Dialog.Panel className="fixed top-0 right-0 z-10 w-full sm:h-screen h-auto pb-20 sm:rounded-none rounded-b-3xl bg-gradient-to-b from-third to-primary sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-lg">
-          <div className="flex items-center justify-between h-20 px-6">
+          <div className="flex items-center justify-between py-6 px-6">
             <a href="/" >
               <span className="sr-only">Your Company</span>
               <Image
