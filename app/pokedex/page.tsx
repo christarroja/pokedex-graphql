@@ -1,4 +1,4 @@
-import ListAllPokemon from "@/components/graphql/ListAllPokemon";
+import ListAllPokemon from "@/components/pages/ListAllPokemon";
 
 export default function Page() {
   return (

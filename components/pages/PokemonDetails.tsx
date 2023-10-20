@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
-import { QueryData } from "./types";
-import { SELECTED_POKEMON } from "./query";
+import { QueryData } from "../graphql/types";
+import { SELECTED_POKEMON } from "../graphql/query";
 import Image from "next/image";
 
 if (process.env.NODE_ENV !== "production") {
