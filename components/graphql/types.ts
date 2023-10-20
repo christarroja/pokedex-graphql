@@ -1,6 +1,11 @@
 export interface Pokemon {
   id: string;
   name: string;
+  image: string;
+  maxHP: number;
+  maxCP: number;
+  types: string[];
+  classification: string;
 }
 
 export interface QueryData {

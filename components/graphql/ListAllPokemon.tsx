@@ -1,45 +1,34 @@
 "use client";
 
-import { gql } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { useState } from "react";
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
-import { QueryData } from "./types";
-import { ALL_POKEMON } from "./query";
-import SelectedPokemonData from "./PokemonDetails";
-
-if (process.env.NODE_ENV !== "production") {
-  loadDevMessages();
-  loadErrorMessages();
-}
+import { QueryData, Pokemon } from "./types";
+import { FIRST_20_POKEMON } from "./query";
+import PokemonCard from "../pages/PokemonCard";
+import PokemonDetails from "./PokemonDetails";
 
 export default function ListAllPokemon() {
-  const { data: allPokemonData } = useSuspenseQuery<QueryData>(ALL_POKEMON);
-  const [selectedPokemon, setSelectedPokemon] = useState<{ id: string; name: string } | null>(null);
+  const { data: allPokemonData } = useSuspenseQuery<QueryData>(FIRST_20_POKEMON);
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
   return (
-    <main>
-      {allPokemonData && allPokemonData.pokemons && (
-        <ul>
-          {allPokemonData.pokemons.map((pokemon) => (
-            <li
-              key={pokemon.id}
-              onClick={() => setSelectedPokemon({ id: pokemon.id, name: pokemon.name })}
-            >
-              {pokemon.name}
-            </li>
+    <main className="max-w-screen-xl mx-auto px-6 py-20">
+      <div className="flex flex-wrap gap-8 items-center justify-evenly">
+        {allPokemonData &&
+          allPokemonData.pokemons &&
+          allPokemonData.pokemons.map((pokemon) => (
+            <div key={pokemon.id} onClick={() => setSelectedPokemon(pokemon)} className="cursor-pointer">
+              <PokemonCard pokemon={pokemon} />
+            </div>
           ))}
-        </ul>
-      )}
-
+      </div>
       {selectedPokemon && (
         <div>
           <h2>{selectedPokemon.name}</h2>
           {/* Fetch selected Pokemon data when it's not null */}
-          <SelectedPokemonData selectedPokemon={selectedPokemon} />
+          <PokemonDetails selectedPokemon={selectedPokemon} />
         </div>
       )}
     </main>
   );
 }
-
