@@ -1,4 +1,3 @@
-// lib/apollo-provider.js
 "use client";
 
 import { ApolloLink, HttpLink } from "@apollo/client";
