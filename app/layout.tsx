@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={karla.className}>
       <ApolloWrapper>
-        <body>
+        <body className="flex flex-col h-screen">
           <StickyHeader />
           {children}
           <Footer />

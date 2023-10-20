@@ -11,7 +11,7 @@ const StickyHeader = () => {
 
   return (
     <section className="sticky z-10 top-0 left-0 w-full py-4 bg-third shadow-lg flex items-center">
-      <div className="max-w-screen-2xl w-full mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-screen-xl w-full mx-auto px-6 flex items-center justify-between">
         <div className="relative w-40 py-8 flex items-center">
           <Image 
             src={'/pokemonLogo.svg'} 
