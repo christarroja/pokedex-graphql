@@ -1,15 +1,14 @@
 import { gql } from "@apollo/client";
 
-export const FIRST_20_POKEMON = gql`
-  query First20Pokemon {
-    pokemons(first: 20) {
+export const ALL_POKEMON = gql`
+  query AllPokemon {
+    pokemons(first: 151) {
       id
       name
       image
       maxHP
       maxCP
       types
-      classification
     }
   }
 `;

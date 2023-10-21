@@ -1,33 +1,73 @@
 'use client'
 
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { QueryData, Pokemon } from "../graphql/types";
-import { FIRST_20_POKEMON } from "../graphql/query";
+import { ALL_POKEMON } from "../graphql/query";
 import PokemonCard from "./PokemonCard";
 import PokemonDetails from "./PokemonDetails";
 import { Dialog, Transition } from "@headlessui/react";
-import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
+const pokeTypes = [ 
+  "Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Steel", "Fairy", 
+]
+
 export default function ListAllPokemon() {
-  const { data: allPokemonData } = useSuspenseQuery<QueryData>(FIRST_20_POKEMON);
+  const { data: allPokemonData } = useSuspenseQuery<QueryData>(ALL_POKEMON);
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
+  const [visiblePokemon, setVisiblePokemon] = useState<Pokemon[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (allPokemonData && allPokemonData.pokemons) {
+      if (selectedTypes.length > 0) {
+        const filteredPokemon = allPokemonData.pokemons.filter((pokemon) =>
+          selectedTypes.every((type) => pokemon.types.includes(type))
+        );
+        setVisiblePokemon(filteredPokemon);
+      } else {
+        setVisiblePokemon(allPokemonData.pokemons.slice(0, 20));
+      }
+    }
+  }, [allPokemonData, selectedTypes]);
+
+  const handleTypeFilter = (type: string) => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
 
   return (
     <main className="max-w-screen-xl mx-auto px-6 py-20">
+      {/* Add the filter UI, you can use buttons or a dropdown to select types */}
+      <div className="my-4 flex flex-wrap gap-4">
+        {pokeTypes.map((type) => (
+          <button
+            key={type}
+            onClick={() => handleTypeFilter(type)}
+            className={`px-3 py-1 rounded-full text-xs ${
+              selectedTypes.includes(type) ? "bg-gray-500 text-white" : "bg-gray-200 text-black"
+            }`}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
+
       <div className="flex flex-wrap gap-8 items-center justify-evenly">
-        {allPokemonData &&
-          allPokemonData.pokemons &&
-          allPokemonData.pokemons.map((pokemon) => (
+        {visiblePokemon.map((pokemon) => (
             <div 
               key={pokemon.id} 
+              className="cursor-pointer"
               onClick={() => {
                 setSelectedPokemon(pokemon); 
                 setIsOpen(true);
+                console.log(pokemon)
               }} 
-              className="cursor-pointer"
             >
               <PokemonCard pokemon={pokemon} />
             </div>

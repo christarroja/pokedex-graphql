@@ -12,7 +12,7 @@ export default function MobileDrawer() {
   const currentRoute = usePathname()
 
   return (
-    <header className="lg:hidden flex ">
+    <header className="lg:hidden flex">
       <div className="flex ">
         <button
           type="button"

@@ -36,7 +36,7 @@ const getPokemonTypeStyles = (type: string) => {
     case "Electric":
       return "bg-amber-500";
     default:
-      return "bg-gray-200";
+      return "bg-gray-400";
   }
 };
 
