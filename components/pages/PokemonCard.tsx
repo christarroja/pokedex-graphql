@@ -1,44 +1,6 @@
 import Image from "next/image";
-
-interface PokemonCardProps {
-  pokemon: {
-    id: string;
-    name: string;
-    image: string;
-    maxHP: number;
-    maxCP: number;
-    types: string[];
-    classification: string;
-  };
-}
-
-const getPokemonTypeStyles = (type: string) => {
-  switch (type) {
-    case "Normal":
-    case "Fighting":
-    case "Flying":
-    case "Steel":
-    case "Fairy":
-      return "bg-gray-500";
-    case "Fire":
-      return "bg-red-500";
-    case "Ice":
-    case "Water":
-      return "bg-blue-500";
-    case "Grass":
-    case "Bug":
-    case "Rock":
-      return "bg-green-500";
-    case "Dark":
-    case "Poison":
-    case "Psychic":
-      return "bg-violet-500";
-    case "Electric":
-      return "bg-amber-500";
-    default:
-      return "bg-gray-400";
-  }
-};
+import { PokemonCardProps } from "../graphql/types";
+import { getPokemonTypeStyles } from "./PokemonTypeStyles";
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   return (
@@ -46,7 +8,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
       <div
         className={`absolute top-0 left-0 z-0 w-2/5 h-full ${getPokemonTypeStyles(pokemon.types[0])}`}
       />
-      <div className="relative flex gap-2 w-full h-full">
+      <div className="relative flex w-full h-full">
         <div className="grid grid-cols-4 grid-rows-4 w-1/2 py-2 px-6 text-white">
           <div className="col-span-4 text-xl font-semibold">{pokemon.name}</div>
           <div className="col-span-2 row-span-2 text-xs">
@@ -72,7 +34,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
             ))}
           </div>
         </div>
-        <div className="relative w-1/2 h-full">
+        <div className="relative w-3/5 h-full">
           <Image 
             src={pokemon.image} 
             alt={pokemon.name} 

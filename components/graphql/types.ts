@@ -5,7 +5,6 @@ export interface Pokemon {
   maxHP: number;
   maxCP: number;
   types: string[];
-  classification: string;
 }
 
 export interface QueryData {
@@ -13,12 +12,34 @@ export interface QueryData {
   pokemon: {
     id: string;
     name: string;
+    image: string;
+    maxHP: number;
+    maxCP: number;
+    types: string[];
+    number: string;
+    resistant: string[];
+    weaknesses: string[];
+    fleeRate: number;
     weight: {
       minimum: string;
       maximum: string;
     };
-    types: string[];
+    height: {
+      minimum: string;
+      maximum: string;
+    };
     classification: string;
+  };
+}
+
+export interface PokemonCardProps {
+  pokemon: {
+    id: string;
+    name: string;
     image: string;
+    maxHP: number;
+    maxCP: number;
+    types: string[];
+    // classification: string;
   };
 }

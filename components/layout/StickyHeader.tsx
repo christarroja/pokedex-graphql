@@ -9,9 +9,9 @@ const StickyHeader = () => {
   const currentRoute = usePathname()
 
   return (
-    <section className="sticky z-10 top-0 left-0 w-full py-4 bg-third shadow-lg flex items-center">
+    <section className="sticky z-10 inset-y-0 left-0 w-full py-4 bg-third shadow-lg flex items-center">
       <div className="max-w-screen-xl w-full mx-auto px-6 flex items-center justify-between">
-        <div className="relative w-40 py-8 flex items-center">
+        <Link className="relative w-40 py-8 flex items-center" href={'/'}>
           <Image 
             src={'/pokemonLogo.svg'} 
             alt={'Pokémon Logo'} 
@@ -19,7 +19,7 @@ const StickyHeader = () => {
             style={{ objectFit: 'contain' }}
             priority
           />
-        </div>
+        </Link>
         <nav className="lg:flex hidden gap-8 text-2xl">
           <button className="px-3 py-2 group">
             <Link 

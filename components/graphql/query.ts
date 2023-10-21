@@ -18,13 +18,23 @@ export const SELECTED_POKEMON = gql`
     pokemon(id: $id, name: $name) {
       id
       name
-      weight {
+      number
+      types
+      resistant
+      weaknesses
+      fleeRate
+      weight{
         minimum
         maximum
       }
-      types
+      height{
+        minimum
+        maximum
+      }
       classification
       image
+      maxHP
+      maxCP
     }
   }
 `;
