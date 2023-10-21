@@ -40,14 +40,47 @@ export default function PokemonDetails({ selectedPokemon }: { selectedPokemon: {
           </div>
         </div>
         
-        <div className={`md:w-1/2 w-full grid grid-cols-4 p-6 ${getPokemonTypeStyles(selectedPokemonData.pokemon.types[0])}`}>
-          <p>Classification: {selectedPokemonData.pokemon.classification}</p>
-
+        <div className={`md:w-1/2 w-full grid grid-cols-3 grid-rows-5 p-8 gap-4 ${getPokemonTypeStyles(selectedPokemonData.pokemon.types[0])}`}>
+          <div className="col-span-2 row-span-1">
+            <p className="text-4xl font-extrabold text-white">
+              {selectedPokemonData.pokemon.name}
+            </p>
+          </div>
+          <div className="col-span-1 row-span-1 flex items-start justify-end">
+            <div className="w-14 h-14 rounded-full bg-third flex items-center justify-center">
+              #{selectedPokemonData.pokemon.number}
+            </div>
+          </div>
+          <div className="col-span-3 row-span-2 bg-white rounded-xl p-4 shadow-md flex flex-col gap-3 justify-center">
+            <p><span className="font-bold mr-1">Classification:</span> {selectedPokemonData.pokemon.classification}</p>
+            <p><span className="font-bold mr-1">Resistant to:</span> {selectedPokemonData.pokemon.resistant.join(', ')}</p>
+            <p><span className="font-bold mr-1">Weaknesses:</span> {selectedPokemonData.pokemon.weaknesses.join(', ')}</p>
+            <p><span className="font-bold mr-1">Flee Rate:</span> {`${(selectedPokemonData.pokemon.fleeRate * 100).toFixed(1)}%`}</p>
+          </div>
+          <div className="col-span-1 row-span-2 bg-white rounded-xl p-4 shadow-md">
+            <span className="font-bold mr-1">Weight:</span>
+            <br />
+            min: {selectedPokemonData.pokemon.weight.minimum}
+            <br />
+            max: {selectedPokemonData.pokemon.weight.maximum}
+          </div>
+          <div className="col-span-1 row-span-2 bg-white rounded-xl p-4 shadow-md">
+            <span className="font-bold mr-1">Height:</span>
+            <br />
+            min: {selectedPokemonData.pokemon.height.minimum}
+            <br />
+            max: {selectedPokemonData.pokemon.height.maximum}
+          </div>
+          <div className="col-span-1 row-span-2 bg-white rounded-xl p-4 shadow-md">
+            <span className="font-bold mr-1">Max HP:</span>
+            {selectedPokemonData.pokemon.maxHP}
+            <br />
+            <span className="font-bold mr-1">Max CP:</span>
+            {selectedPokemonData.pokemon.maxCP}
+          </div>
         </div>
-        
-        {/* Display other details as needed */}
       </div>
     );
   }
-  return <p>Loading...</p>;
+  return <p>Loading...</p>
 }

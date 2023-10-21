@@ -106,10 +106,10 @@ export default function ListAllPokemon() {
           <div className="fixed inset-0 bg-black bg-opacity-50" />
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Dialog.Panel className="relative w-full max-w-5xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="relative w-full max-w-6xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
 
                 {/* Close button */}
-                <div className="fixed top-4 right-4 z-50 text-gray-500 hover:text-gray-600">
+                <div className="fixed top-4 left-4 z-50 text-gray-500 hover:text-gray-600">
                   <button
                     type="button"
                     className="text-black"
