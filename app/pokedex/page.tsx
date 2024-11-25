@@ -5,5 +5,5 @@ export default function Page() {
     <main className="flex-1 bg-white">
       <ListAllPokemon />
     </main>
-  )
+  );
 }

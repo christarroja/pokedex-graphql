@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { useSuspenseQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { QueryData, Pokemon } from "../graphql/types";
 import { ALL_POKEMON } from "../graphql/query";
@@ -93,7 +93,6 @@ export default function ListAllPokemon() {
             onClick={() => {
               setSelectedPokemon(pokemon); 
               setIsOpen(true);
-              console.log(pokemon)
             }} 
           >
             <PokemonCard pokemon={pokemon} />

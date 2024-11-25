@@ -1,7 +1,6 @@
 import Hero from "@/components/pages/Hero";
 import Image from "next/image";
 
-
 export default function Home() {
   return (
     <main className="flex-1 bg-gradient-to-b from-third to-primary">
@@ -16,5 +15,5 @@ export default function Home() {
         />
       </div>
     </main>
-  )
+  );
 }

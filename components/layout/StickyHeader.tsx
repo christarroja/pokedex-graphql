@@ -1,22 +1,22 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import MobileDrawer from './MobileDrawer'
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import MobileDrawer from "./MobileDrawer";
 
 const StickyHeader = () => {
-  const currentRoute = usePathname()
+  const currentRoute = usePathname();
 
   return (
     <section className="sticky z-10 inset-y-0 left-0 w-full py-4 bg-third shadow-lg flex items-center">
       <div className="max-w-screen-xl w-full mx-auto px-6 flex items-center justify-between">
-        <Link className="relative w-40 py-8 flex items-center" href={'/'}>
+        <Link className="relative w-40 py-8 flex items-center" href={"/"}>
           <Image 
-            src={'/pokemonLogo.svg'} 
-            alt={'Pokémon Logo'} 
+            src={"/pokemonLogo.svg"} 
+            alt={"Pokémon Logo"} 
             fill
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: "contain" }}
             priority
           />
         </Link>
@@ -48,7 +48,7 @@ const StickyHeader = () => {
       </div>
       
     </section>
-  )
+  );
 }
 
-export default StickyHeader
+export default StickyHeader;
