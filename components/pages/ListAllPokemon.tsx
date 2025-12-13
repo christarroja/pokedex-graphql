@@ -1,6 +1,6 @@
 "use client";
 
-import { useSuspenseQuery } from "@apollo/client";
+import { useSuspenseQuery } from "@apollo/client/react";
 import { useEffect, useState } from "react";
 import { QueryData, Pokemon } from "../graphql/types";
 import { ALL_POKEMON } from "../graphql/query";
@@ -9,9 +9,25 @@ import PokemonDetails from "./PokemonDetails";
 import { Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-const pokeTypes = [ 
-  "Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Steel", "Fairy", 
-]
+const pokeTypes = [
+  "Normal",
+  "Fire",
+  "Water",
+  "Grass",
+  "Electric",
+  "Ice",
+  "Fighting",
+  "Poison",
+  "Ground",
+  "Flying",
+  "Psychic",
+  "Bug",
+  "Rock",
+  "Ghost",
+  "Dragon",
+  "Steel",
+  "Fairy",
+];
 
 export default function ListAllPokemon() {
   const { data: allPokemonData } = useSuspenseQuery<QueryData>(ALL_POKEMON);
@@ -19,7 +35,7 @@ export default function ListAllPokemon() {
   const [visiblePokemon, setVisiblePokemon] = useState<Pokemon[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (allPokemonData && allPokemonData.pokemons) {
@@ -58,11 +74,10 @@ export default function ListAllPokemon() {
     <main className="max-w-screen-xl mx-auto px-6 pt-6 pb-20">
       {/* search input field */}
       <div className="my-4">
-
-        <input 
-          type="text" 
-          id="search-pokemon" 
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+        <input
+          type="text"
+          id="search-pokemon"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Search Pokémon"
           value={searchQuery}
           onChange={handleSearch}
@@ -76,7 +91,9 @@ export default function ListAllPokemon() {
             key={type}
             onClick={() => handleTypeFilter(type)}
             className={`px-3 py-1 rounded-full text-xs ${
-              selectedTypes.includes(type) ? "bg-gray-500 text-white" : "bg-gray-200 text-black"
+              selectedTypes.includes(type)
+                ? "bg-gray-500 text-white"
+                : "bg-gray-200 text-black"
             }`}
           >
             {type}
@@ -87,13 +104,13 @@ export default function ListAllPokemon() {
       {/* Display cards */}
       <div className="flex flex-wrap gap-8 items-center justify-evenly">
         {visiblePokemon.map((pokemon) => (
-          <div 
-            key={pokemon.id} 
+          <div
+            key={pokemon.id}
             className="cursor-pointer"
             onClick={() => {
-              setSelectedPokemon(pokemon); 
+              setSelectedPokemon(pokemon);
               setIsOpen(true);
-            }} 
+            }}
           >
             <PokemonCard pokemon={pokemon} />
           </div>
@@ -101,12 +118,16 @@ export default function ListAllPokemon() {
       </div>
 
       {selectedPokemon && (
-        <Dialog as="div" className="relative z-10" open={isOpen} onClose={() => setIsOpen(false)}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
           <div className="fixed inset-0 bg-black bg-opacity-50" />
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Dialog.Panel className="relative w-full max-w-6xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-
                 {/* Close button */}
                 <div className="fixed top-4 left-4 z-50 text-gray-500 hover:text-gray-600">
                   <button
@@ -125,7 +146,6 @@ export default function ListAllPokemon() {
             </div>
           </div>
         </Dialog>
-
       )}
     </main>
   );
